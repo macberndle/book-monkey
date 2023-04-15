@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Book } from '../shared/book';
 
 @Component({
@@ -7,6 +7,7 @@ import { Book } from '../shared/book';
   styleUrls: ['./book-list.component.css']
 })
 export class BookListComponent {
+  @Output() selectBook = new EventEmitter<Book>();
   books: Book[] = [];
 
   constructor(){
@@ -22,7 +23,7 @@ export class BookListComponent {
       },
       {
         isbn: '67890',
-        title: 'Bakcen mit Affen',
+        title: 'Backen mit Affen',
         authors: ['Orang Utan'],
         published: '2022-07-15',
         subtitle: 'Bananenbrot und mehr',
@@ -30,5 +31,9 @@ export class BookListComponent {
         description: 'Tolle Backtipps für Mensch und Tier'
       }
     ]
+  }
+
+  doSelect(book: Book) {
+    this.selectBook.emit(book)
   }
 }
