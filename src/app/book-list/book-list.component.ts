@@ -4,13 +4,13 @@ import { Book } from '../shared/book';
 @Component({
   selector: 'bm-book-list',
   templateUrl: './book-list.component.html',
-  styleUrls: ['./book-list.component.css']
+  styleUrls: ['./book-list.component.css'],
 })
 export class BookListComponent {
   @Output() selectBook = new EventEmitter<Book>();
   books: Book[] = [];
 
-  constructor(){
+  constructor() {
     this.books = [
       {
         isbn: '12345',
@@ -19,7 +19,7 @@ export class BookListComponent {
         published: '2022-06-20',
         subtitle: 'Rezepte von Affe und Zebra',
         thumbnailUrl: 'https://cdn.ng-buch.de/kochen.png',
-        description: 'Immer lecker und gut'
+        description: 'Immer lecker und gut',
       },
       {
         isbn: '67890',
@@ -28,12 +28,12 @@ export class BookListComponent {
         published: '2022-07-15',
         subtitle: 'Bananenbrot und mehr',
         thumbnailUrl: 'https://cdn.ng-buch.de/backen.png',
-        description: 'Tolle Backtipps für Mensch und Tier'
-      }
-    ]
+        description: 'Tolle Backtipps für Mensch und Tier',
+      },
+    ];
   }
 
   doSelect(book: Book) {
-    this.selectBook.emit(book)
+    this.selectBook.emit(book);
   }
 }
