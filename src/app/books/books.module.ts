@@ -13,6 +13,6 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     BookDetailsComponent,
   ],
   imports: [CommonModule, BooksRoutingModule],
-  exports: [BookListComponent, BookListItemComponent],
+  exports: [BookListComponent, BookDetailsComponent],
 })
 export class BooksModule {}
