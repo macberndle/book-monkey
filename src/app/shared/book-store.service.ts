@@ -35,6 +35,6 @@ export class BookStoreService {
   }
 
   getSingle(isbn: string): Book | undefined {
-    return this.books.find(book => book.isbn === isbn);
+    return this.books.find((book) => book.isbn === isbn);
   }
 }
