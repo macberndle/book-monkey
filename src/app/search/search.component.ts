@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, filter } from 'rxjs';
 
 @Component({
   selector: 'bm-search',
@@ -10,7 +10,9 @@ export class SearchComponent {
   input$ = new Subject<string>();
 
   constructor(){
-    this.input$.subscribe(e => console.log(e))
+    this.input$.pipe(
+        filter(term => term.length >= 3)
+      ).subscribe(e => console.log(e))
   }
 
 }
