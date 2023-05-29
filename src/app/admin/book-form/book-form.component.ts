@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Book } from 'src/app/shared/book';
 
 @Component({
   selector: 'bm-book-form',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent {
-
+  book: Book = {
+    isbn: '',
+    title: '',
+    authors: ['']
+  };
 }
