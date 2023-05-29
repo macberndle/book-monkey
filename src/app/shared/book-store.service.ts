@@ -13,6 +13,11 @@ export class BookStoreService {
     private http: HttpClient
   ) { }
 
+  create(book: Book): Observable<Book> {
+    return this.http
+      .post<Book>(`${this.apiUrl}/books`, book);
+  }
+
   getAll(): Observable<Book[]> {
     return this.http.get<Book[]>(`${this.apiUrl}/books`).pipe(
       catchError(err => {
