@@ -12,4 +12,8 @@ export class BookFormComponent {
     title: '',
     authors: ['']
   };
+
+  submitForm() {
+    console.log('submit')
+  }
 }
