@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Book } from 'src/app/shared/book';
 
 @Component({
@@ -7,6 +7,7 @@ import { Book } from 'src/app/shared/book';
   styleUrls: ['./book-form.component.css']
 })
 export class BookFormComponent {
+  @Output() submitBook = new EventEmitter<Book>();
   book: Book = {
     isbn: '',
     title: '',
@@ -14,6 +15,6 @@ export class BookFormComponent {
   };
 
   submitForm() {
-    console.log('submit')
+    this.submitBook.emit(this.book);
   }
 }
