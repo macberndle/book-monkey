@@ -5,14 +5,17 @@
   <a routerLink="/books"
     routerLinkActive="active"
     ariaCurrentWhenActive="page">Books</a>
-    <div class="actions">
-      <button *ngIf="!auth.isAuthenticated"
-        class="green"
-        (click)="auth.login()">Login</button>
-      <button *ngIf="auth.isAuthenticated"
-        class="red"
-        (click)="auth.logout()">Logout</button>
-    </div>
+  <a routerLink="/admin"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page">Administration</a>
+  <div class="actions">
+    <button *ngIf="!auth.isAuthenticated"
+      class="green"
+      (click)="auth.login()">Login</button>
+    <button *ngIf="auth.isAuthenticated"
+      class="red"
+      (click)="auth.logout()">Logout</button>
+  </div>
 </nav>
 <main>
   <router-outlet></router-outlet>
