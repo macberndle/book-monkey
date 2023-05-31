@@ -10,6 +10,11 @@
   <input id="isbn" formControlName="isbn" />
 
   <label>Author</label>
+  <button type="button"
+    class="add"
+    (click)="addAuthorControl()">
+    + Author
+  </button>
   <fieldset formArrayName="authors">
     <input *ngFor="let a of authors.controls; index as i"
       [attr.aria.label]="'Author ' + i"
