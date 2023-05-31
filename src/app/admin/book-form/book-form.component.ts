@@ -42,9 +42,10 @@ export class BookFormComponent {
 
   submitForm() {
     const formValue = this.form.getRawValue();
+    const authors = formValue.authors.filter(author => !!author);
     const newBook: Book = {
       ...formValue,
-      authors: [] // ToDo: echte Eingaben
+      authors
     }
     this.submitBook.emit(newBook);
   }
