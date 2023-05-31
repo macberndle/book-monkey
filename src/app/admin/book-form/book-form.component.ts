@@ -62,6 +62,10 @@ export class BookFormComponent implements OnChanges {
   }
 
   private setFormValues(book: Book) {
-    console.log(JSON.stringify(book));
+    this.form.patchValue(book);
+    this.form.setControl(
+      'authors',
+      this.buildAuthorsArray(book.authors)
+    )
   }
 }
