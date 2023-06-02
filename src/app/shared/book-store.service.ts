@@ -13,6 +13,12 @@ export class BookStoreService {
     private http: HttpClient
   ) { }
 
+  check(isbn: string): Observable<boolean> {
+    return this.http.get<boolean>(
+      `${this.apiUrl}/books/${isbn}/check`
+    )
+  }
+
   create(book: Book): Observable<Book> {
     return this.http
       .post<Book>(`${this.apiUrl}/books`, book);
