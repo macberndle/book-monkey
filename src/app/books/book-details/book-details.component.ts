@@ -23,10 +23,8 @@ export class BookDetailsComponent {
   }
 
   removeBook(isbn: string): void {
-    if(window.confirm('Remove book?')){
-      this.service.remove(isbn).subscribe(() => {
-        this.router.navigateByUrl('/books');
-      })
-    }
+    this.service.remove(isbn).subscribe(() => {
+      this.router.navigateByUrl('/books');
+    })
   }
 }
