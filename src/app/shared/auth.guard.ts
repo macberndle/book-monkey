@@ -22,7 +22,7 @@ export const authGuard: CanActivateFn = () => {
         return true;
       } else {
         window.alert('Not logged in!');
-        return router.createUrlTree(['/home']);
+        return router.parseUrl('/home');
       }
     })
   )
