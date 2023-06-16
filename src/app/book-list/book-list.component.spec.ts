@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Book } from '../shared/book';
 import { BookListComponent } from './book-list.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { BookListItemComponent } from '../book-list-item/book-list-item.component';
 
 fdescribe('BookListComponent', () => {
   let component: BookListComponent;
@@ -9,8 +9,10 @@ fdescribe('BookListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BookListComponent],
-      schemas: [NO_ERRORS_SCHEMA]
+      declarations: [
+        BookListComponent,
+        BookListItemComponent
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(BookListComponent);
@@ -45,5 +47,15 @@ fdescribe('BookListComponent', () => {
 
     fixture.nativeElement.querySelector('bm-book-list-item').click();
     expect(receivedBook?.title).toBe('Tierisch gut kochen');
-  })
+  });
+
+  it(`should trigger an event on clicking the thumbnail`, () => {
+    let receivedBook: Book | undefined;
+    component.selectBook.subscribe(book => {
+      receivedBook = book;
+    });
+
+    fixture.nativeElement.querySelector('img').click();
+    expect(receivedBook?.title).toBe('Tierisch gut kochen');
+  });
 });
