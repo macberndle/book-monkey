@@ -63,5 +63,18 @@ describe('BookMonkey', () => {
       .each(($li) => {
         cy.wrap($li).contains('No results')
       });
+  });
+
+  it(`should display the books list`, () => {
+    cy.intercept('https://api5.angular-buch.com/books', {
+      fixture: 'books.json'
+    });
+    cy.get('nav')
+      .contains('Books')
+      .click();
+    cy.get('.book-list')
+      .children()
+      .its('length')
+      .should('eq', 1);
   })
 })
