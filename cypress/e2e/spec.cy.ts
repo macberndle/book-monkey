@@ -47,4 +47,21 @@ describe('BookMonkey', () => {
           cy.wrap($li).contains('Angular');
         });
   });
+
+  it(`should not open the results box on server error`, () => {
+    cy.intercept('GET', 'https://api5.angular-buch.com/books/search/*', {
+      statusCode: 500,
+      body: '500 Internal Server Error'
+    }).as('search');
+    cy.get('input[type=search]')
+      .clear()
+      .type('Angular');
+    cy.wait('@search');
+    cy.get('.search-results')
+      .find('li')
+      .should('have.length', 1)
+      .each(($li) => {
+        cy.wrap($li).contains('No results')
+      });
+  })
 })
