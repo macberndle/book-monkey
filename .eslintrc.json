@@ -34,7 +34,9 @@
         "@typescript-eslint/quotes": [
           "error",
           "single",
-          {"allowTemplateLiterals": true}
+          {
+            "allowTemplateLiterals": true
+          }
         ]
       }
     },
@@ -46,6 +48,14 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/recommended"
+      ]
     }
   ]
 }
