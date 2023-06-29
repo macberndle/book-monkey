@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Book } from '../../shared/book';
 import { BookStoreService } from 'src/app/shared/book-store.service';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { loadBooks } from '../store/book.actions';
 
 @Component({
   selector: 'bm-book-list',
@@ -11,7 +13,11 @@ import { Observable } from 'rxjs';
 export class BookListComponent {
   books$: Observable<Book[]>;
 
-  constructor(private service: BookStoreService) {
+  constructor(
+    private service: BookStoreService,
+    private store: Store
+  ) {
+    this.store.dispatch(loadBooks())
     this.books$ = this.service.getAll();
   }
 }
