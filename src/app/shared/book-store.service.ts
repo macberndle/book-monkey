@@ -25,12 +25,7 @@ export class BookStoreService {
   }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/books`).pipe(
-      catchError(err => {
-        console.log(`BookStoreService - getAll() - Error: ${JSON.stringify(err)} `);
-        return of([])
-      })
-    );
+    return this.http.get<Book[]>(`${this.apiUrl}/bookss`);
   }
 
   getAllSearch(term: string): Observable<Book[]> {
