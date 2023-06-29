@@ -3,8 +3,7 @@ import { Book } from '../../shared/book';
 import { BookStoreService } from 'src/app/shared/book-store.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { loadBooks } from '../store/book.actions';
-
+import { BookActions } from '../store/book.actions';
 @Component({
   selector: 'bm-book-list',
   templateUrl: './book-list.component.html',
@@ -17,7 +16,7 @@ export class BookListComponent {
     private service: BookStoreService,
     private store: Store
   ) {
-    this.store.dispatch(loadBooks())
+    this.store.dispatch(BookActions.loadBooks())
     this.books$ = this.service.getAll();
   }
 }
