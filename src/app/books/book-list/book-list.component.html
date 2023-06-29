@@ -5,3 +5,5 @@
   </li>
   <li *ngIf="!books.length">No books available.</li>
 </ul>
+
+<div class="loader" *ngIf="loading$ | async">Loading ...</div>

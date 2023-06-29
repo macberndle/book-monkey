@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Book } from '../../shared/book';
-import { BookStoreService } from 'src/app/shared/book-store.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { BookActions } from '../store/book.actions';
+import { selectAllBooks, selectBooksLoading } from '../store/book.selectors';
 @Component({
   selector: 'bm-book-list',
   templateUrl: './book-list.component.html',
@@ -11,12 +11,11 @@ import { BookActions } from '../store/book.actions';
 })
 export class BookListComponent {
   books$: Observable<Book[]>;
+  loading$: Observable<boolean>;
 
-  constructor(
-    private service: BookStoreService,
-    private store: Store
-  ) {
-    this.store.dispatch(BookActions.loadBooks())
-    this.books$ = this.service.getAll();
+  constructor( private store: Store ) {
+    this.books$ = this.store.select(selectAllBooks);
+    this.loading$ = this.store.select(selectBooksLoading);
+    this.store.dispatch(BookActions.loadBooks());
   }
 }
