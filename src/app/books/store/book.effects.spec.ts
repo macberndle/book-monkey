@@ -8,6 +8,8 @@ import { book } from './test-helper';
 import { BookActions } from './book.actions';
 import { Action } from '@ngrx/store';
 import { cold, hot } from 'jasmine-marbles';
+import { MockStore, provideMockStore } from '@ngrx/store/testing'
+import { initialState } from './book.reducer';
 
 fdescribe('BookEffects', () => {
   let actions$: Observable<any>;
@@ -18,6 +20,9 @@ fdescribe('BookEffects', () => {
       providers: [
         BookEffects,
         provideMockActions(() => actions$),
+        provideMockStore({
+          initialState: { book: initialState}
+        }),
         { provide: BookStoreService, useValue: { getAll: () => of([])}}
       ]
     });
@@ -63,5 +68,20 @@ fdescribe('BookEffects', () => {
 
     expect(effects.loadBooks$).toBeObservable(expected);
     expect(bs.getAll).toHaveBeenCalled();
+  });
+
+  it(`should do nothing if store is already filled`, () => {
+    const store = TestBed.inject(MockStore);
+    store.setState({
+      book: {
+        books: [book(1)],
+        loading: false
+      }
+    });
+
+    actions$ = hot('--a', { a: BookActions.loadBooks() });
+    const expected = cold('---');
+
+    expect(effects.loadBooks$).toBeObservable(expected);
   })
 });
