@@ -25,7 +25,7 @@ export class BookStoreService {
   }
 
   getAll(): Observable<Book[]> {
-    return this.http.get<Book[]>(`${this.apiUrl}/bookss`);
+    return this.http.get<Book[]>(`${this.apiUrl}/books`);
   }
 
   getAllSearch(term: string): Observable<Book[]> {
