@@ -11,7 +11,7 @@ import { cold, hot } from 'jasmine-marbles';
 import { MockStore, provideMockStore } from '@ngrx/store/testing'
 import { initialState } from './book.reducer';
 
-fdescribe('BookEffects', () => {
+describe('BookEffects', () => {
   let actions$: Observable<any>;
   let effects: BookEffects;
 
